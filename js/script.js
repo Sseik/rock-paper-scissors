@@ -35,6 +35,7 @@ function playRound(humanChoice, computerChoice) {
     humanScore++;
     console.log(`You win! ${humanChoice + (humanChoice === "Scissors" ? " beat" : " beats")} ${computerChoice}.`);
   } else {
+    computerScore++;
     console.log(`You lose! ${computerChoice + (computerChoice === "Scissors" ? " beat" : " beats")} ${humanChoice}.`);
   }
 }
