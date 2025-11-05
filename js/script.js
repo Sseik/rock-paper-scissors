@@ -19,18 +19,5 @@ function getComputerChoice() {
 
 // Not checking for invalid input as the task specifically says not to
 function getHumanChoice() {
-  let choice = parseInt(
-    prompt("Choose your move (0 - Rock, 1 - Paper or 2 - Scissors): ")
-  );
-  switch (choice) {
-    case 0:
-      choice = "Rock";
-      break;
-    case 1:
-      choice = "Paper";
-      break;
-    default:
-      choice = "Scissors";
-  }
-  return choice;
+  return prompt("Choose your move (Rock, Paper or Scissors): ");
 }
