@@ -21,3 +21,20 @@ function getComputerChoice() {
 function getHumanChoice() {
   return prompt("Choose your move (Rock, Paper or Scissors): ");
 }
+
+function playRound(humanChoice, computerChoice) {
+  humanChoice =
+    humanChoice[0].toUpperCase() + humanChoice.slice(1).toLowerCase();
+  if (humanChoice === computerChoice) {
+    console.log(`It's a tie! You both chose ${humanChoice}.`);
+  } else if (
+    (humanChoice === "Rock" && computerChoice === "Scissors") ||
+    (humanChoice === "Scissors" && computerChoice === "Paper") ||
+    (humanChoice === "Paper" && computerChoice === "Rock")
+  ) {
+    humanScore++;
+    console.log(`You win! ${humanChoice + (humanChoice === "Scissors" ? " beat" : " beats")} ${computerChoice}.`);
+  } else {
+    console.log(`You lose! ${computerChoice + (computerChoice === "Scissors" ? " beat" : " beats")} ${humanChoice}.`);
+  }
+}
