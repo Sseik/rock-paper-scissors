@@ -39,10 +39,13 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
+const restartButton = document.querySelector('#restart');
+const choiceButtons = document.querySelectorAll("#choices button");
+
 function endGame() {
   resultDiv.textContent += ` ${computerScore === 5 ? "Computer" : "You"} won!`;
-  const choiceButtons = document.querySelectorAll("#choices button");
   choiceButtons.forEach((button) => (button.disabled = true));
+  restartButton.hidden = false;
 }
 
 const choices = document.querySelector("#choices");
@@ -53,3 +56,10 @@ choices.addEventListener("click", (e) => {
   playRound(humanChoice, getComputerChoice());
   if (humanScore === 5 || computerScore === 5) endGame();
 });
+
+restartButton.addEventListener('click', () => {
+  humanScore = 0;
+  computerScore = 0;
+  choiceButtons.forEach(button => button.disabled = false);
+  restartButton.hidden = true;
+})
