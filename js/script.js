@@ -1,4 +1,3 @@
-let humanChoice;
 let humanScore = 0;
 let computerScore = 0;
 
@@ -42,25 +41,10 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-const rockButton = document.querySelector('#rock');
-const paperButton = document.querySelector('#paper');
-const scissorsButton = document.querySelector('#scissors');
-
-rockButton.addEventListener('click', () => {
-  humanChoice = 'Rock';
-})
-
-paperButton.addEventListener('click', () => {
-  humanChoice = 'Paper';
-})
-
-scissorsButton.addEventListener('click', () => {
-  humanChoice = 'Scissors';
-})
-
 const choices = document.querySelector('#choices');
 choices.addEventListener('click', (e) => {
   if (e.target.id === 'choices') return;
-  let computerChoice = getComputerChoice();
-  playRound(humanChoice, computerChoice);
+  let humanChoice = e.target.id;
+  humanChoice = humanChoice[0].toUpperCase() + humanChoice.slice(1);
+  playRound(humanChoice, getComputerChoice());
 })
