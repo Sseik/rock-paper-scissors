@@ -17,34 +17,39 @@ function getComputerChoice() {
   return choice;
 }
 
+const resultDiv = document.querySelector("#result");
+
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
-    console.log(`It's a tie! You both chose ${humanChoice}.`);
+    resultDiv.textContent = `It's a tie! You both chose ${humanChoice}.`;
   } else if (
     (humanChoice === "Rock" && computerChoice === "Scissors") ||
     (humanChoice === "Scissors" && computerChoice === "Paper") ||
     (humanChoice === "Paper" && computerChoice === "Rock")
   ) {
     humanScore++;
-    console.log(
-      `You win! ${
-        humanChoice + (humanChoice === "Scissors" ? " beat" : " beats")
-      } ${computerChoice}.`
-    );
+    resultDiv.textContent = `You win! ${
+      humanChoice + (humanChoice === "Scissors" ? " beat" : " beats")
+    } ${computerChoice}.`;
   } else {
     computerScore++;
-    console.log(
-      `You lose! ${
-        computerChoice + (computerChoice === "Scissors" ? " beat" : " beats")
-      } ${humanChoice}.`
-    );
+    resultDiv.textContent = `You lose! ${
+      computerChoice + (computerChoice === "Scissors" ? " beat" : " beats")
+    } ${humanChoice}.`;
   }
 }
 
-const choices = document.querySelector('#choices');
-choices.addEventListener('click', (e) => {
-  if (e.target.id === 'choices') return;
+function endGame() {
+  resultDiv.textContent += ` ${computerScore === 5 ? "Computer" : "You"} won!`;
+  const choiceButtons = document.querySelectorAll("#choices button");
+  choiceButtons.forEach((button) => (button.disabled = true));
+}
+
+const choices = document.querySelector("#choices");
+choices.addEventListener("click", (e) => {
+  if (e.target.id === "choices") return;
   let humanChoice = e.target.id;
   humanChoice = humanChoice[0].toUpperCase() + humanChoice.slice(1);
   playRound(humanChoice, getComputerChoice());
-})
+  if (humanScore === 5 || computerScore === 5) endGame();
+});
