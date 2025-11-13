@@ -39,7 +39,7 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-const restartButton = document.querySelector('#restart');
+const restartButton = document.querySelector("#restart");
 const choiceButtons = document.querySelectorAll("#choices button");
 
 function endGame() {
@@ -57,9 +57,9 @@ choices.addEventListener("click", (e) => {
   if (humanScore === 5 || computerScore === 5) endGame();
 });
 
-restartButton.addEventListener('click', () => {
+restartButton.addEventListener("click", () => {
   humanScore = 0;
   computerScore = 0;
-  choiceButtons.forEach(button => button.disabled = false);
+  choiceButtons.forEach((button) => (button.disabled = false));
   restartButton.hidden = true;
-})
+});
